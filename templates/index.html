@@ -2,4 +2,14 @@
 
 {% block content %}
     <h1>{% block title %} Welcome to CertMon {% endblock %}</h1>
+    
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.url.label }} {{ form.url(id='url-form') }} <input type="submit" value="check">
+    </form>
+
+    <div class="page-header">
+        {% if url %} Hello {{ url }}! {% endif %}
+    </div>
+
 {% endblock %}
