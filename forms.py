@@ -4,4 +4,4 @@ from wtforms import (StringField, TextAreaField, IntegerField, BooleanField,
 from wtforms.validators import InputRequired, Length
 
 class UrlForm(FlaskForm):
-    url = StringField('Enter website', validators=[InputRequired()])
+    url = StringField(label = 'Enter website url', render_kw={'placeholder': 'https://website.com'}, validators=[InputRequired()])
