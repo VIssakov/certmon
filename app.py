@@ -13,6 +13,7 @@ def index():
     form = UrlForm()
     if form.validate_on_submit():
         url = form.url.data
+        ssl = Extract()
+        ssl = ssl.fetch_ssl(url)
         form.url.data = ''
-        ssl = Extract(url)
-    return render_template('index.html', form=form, url=url)
+    return render_template('index.html', form=form, url=url, ssl=ssl)
