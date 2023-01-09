@@ -9,7 +9,7 @@ Small test project to monitor SSL certificates
 - Add logic for extracting certificate from url [X]
 - Print extension from cert (like alt names and etc) [X]
 - delete "X509Name object" from subject and issuer [X]
-- Add url validator []
+- Add url validator [X]
 - Add logic to fetch port from url for non standart port []
 - Add errors trap to extract ssl logic []
 - Add errors output to form []

@@ -10,6 +10,12 @@
 
     <div class="page-header">
         {% if ssl %} {{ ssl }} {% endif %}
+        {% if form.url.errors %}
+            {% for error in form.url.errors %}
+                <span>{{ error }}</span>
+            {% endfor  %}
+        {% endif %}
+
     </div>
 
 {% endblock %}
