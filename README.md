@@ -4,6 +4,7 @@ Small test project to monitor SSL certificates
 
 ### ROADMAP
 
+- add requirements file []
 - Add main page [X]
 - Add simple form to add a site for monitoring  [X]
 - Add logic for extracting certificate from url [X]
