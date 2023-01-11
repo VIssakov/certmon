@@ -9,7 +9,13 @@
     </form>
 
     <div class="page-header">
-        {% if ssl %} {{ ssl }} {% endif %}
+        {% if ssl %}
+            <b>subject</b>: {{ ssl['subject'] }}<br>
+            <b>notBefore</b>: {{ ssl['notBefore'] }}<br>
+            <b>notAfter</b>: {{ ssl['notAfter'] }}<br>
+            <b>issuer</b>: {{ ssl['issuer'] }}<br>
+            <b>subjectAltName</b>: {{ ssl['subjectAltName'] }}<br>
+        {% endif %}
         {% if form.url.errors %}
             {% for error in form.url.errors %}
                 <span>{{ error }}</span>
