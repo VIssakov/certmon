@@ -4,3 +4,15 @@ h1 {
     text-align: center;
     padding: 10px;
 }
+
+.form_save_cancel_buttons {
+    display:inline-block;
+    margin-right:5px;
+}
+
+.form-success {
+    background-color: #dfd4d4;
+}
+.form-error {
+    background-color: #ff0000;
+}

@@ -5,20 +5,27 @@
     
     <form method="POST">
         {{ form.csrf_token }}
-        {{ form.url.label }}: {{ form.url(id='url-form') }}<input type="submit" value="check">
+        {{ form.url.label }}: {{ form.url(id='url-form') }}<input type="submit" id="check" value="check">
     </form>
 
-    <div class="page-header">
+    <div class="form-output">
         {% if ssl %}
+        <div class="form-success">
             <b>subject</b>: {{ ssl['subject'] }}<br>
             <b>notBefore</b>: {{ ssl['notBefore'] }}<br>
             <b>notAfter</b>: {{ ssl['notAfter'] }}<br>
             <b>issuer</b>: {{ ssl['issuer'] }}<br>
             <b>subjectAltName</b>: {{ ssl['subjectAltName'] }}<br>
+            <br>
+            <input type="submit" class="form_save_cancel_buttons" id="save" value="save" style="background-color:green; border-color:green; color:white">
+            <input type="submit" class="form_save_cancel_buttons" id="cancel" value="cancel" style="background-color:red; border-color:red; color:white">
+        </div>
         {% endif %}
         {% if form.url.errors %}
             {% for error in form.url.errors %}
+            <div class="form=error">
                 <span>{{ error }}</span>
+            </div>
             {% endfor  %}
         {% endif %}
 
