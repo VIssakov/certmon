@@ -3,32 +3,44 @@
 {% block content %}
     <h1>{% block title %} Welcome to CertMon {% endblock %}</h1>
     
-    <form method="POST">
-        {{ form.csrf_token }}
-        {{ form.url.label }}: {{ form.url(id='url-form') }}<input type="submit" id="check" value="check">
-    </form>
-
-    <div class="form-output">
-        {% if ssl %}
-        <div class="form-success">
-            <b>subject</b>: {{ ssl['subject'] }}<br>
-            <b>notBefore</b>: {{ ssl['notBefore'] }}<br>
-            <b>notAfter</b>: {{ ssl['notAfter'] }}<br>
-            <b>issuer</b>: {{ ssl['issuer'] }}<br>
-            <b>subjectAltName</b>: {{ ssl['subjectAltName'] }}<br>
-            <br>
-            <input type="submit" class="form_save_cancel_buttons" id="save" value="save" style="background-color:green; border-color:green; color:white">
-            <input type="submit" class="form_save_cancel_buttons" id="cancel" value="cancel" style="background-color:red; border-color:red; color:white">
-        </div>
-        {% endif %}
-        {% if form.url.errors %}
-            {% for error in form.url.errors %}
+    <form method="POST" id="check_url_form">
+        {{ check_url_form.csrf_token }}
+        {{ check_url_form.url.label }}: {{ check_url_form.url(id='check_url_form') }} {{ check_url_form.check(id="check_url_form", class="form_check_buttons", id="check", value="check", style="background-color:orange; border-color:orange; color:white") }}
+        {% if check_url_form.url.errors %}
+            {% for error in check_url_form.url.errors %}
             <div class="form=error">
                 <span>{{ error }}</span>
             </div>
             {% endfor  %}
         {% endif %}
+    </form>
 
+    <div class="form-output">
+        {% if ssl %}
+        <div class="form-success" style="visibility:{{ visibility }}">
+            <form method="POST" id="save_url_form">
+                {{ check_url_form.csrf_token }}
+                {{ save_url_form.subject.label }}: {{ save_url_form.subject(size=80, readonly="readonly", value=ssl['subject'] ) }}<br>
+                {{ save_url_form.notbefore.label }}: {{ save_url_form.notbefore(size=80, readonly="readonly", value=ssl['notBefore']) }}<br>
+                {{ save_url_form.notafter.label }}: {{ save_url_form.notafter(size=80, readonly="readonly", value=ssl['notAfter']) }}<br>
+                {{ save_url_form.issuer.label }}: {{ save_url_form.issuer(size=80, readonly="readonly", value=ssl['issuer']) }}<br>
+                {{ save_url_form.subjectaltname.label }}: {{ save_url_form.subjectaltname(size=80, readonly="readonly", value=ssl['subjectAltName']) }}<br>
+                {{ save_url_form.save(id="save_url_form", class="form_save_cancel_buttons", value="save", style="background-color:green; border-color:green; color:white") }}
+                {{ save_url_form.cancel(id="cancel_url_form", class="form_save_cancel_buttons", id="cancel", value="cancel", style="background-color:red; border-color:red; color:white") }}
+            </form>
+        </div>
+        {% endif %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert" id="hideMe">
+                {% for category, message in messages %}
+                    <div class=" alert_{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
     </div>
 
 {% endblock %}
