@@ -1,0 +1,53 @@
+services:
+  certmon:
+    platform: linux/amd64
+    build:
+      context: _docker
+    container_name: certmon
+    environment:
+      PORT: 8000
+      DATABASE_URL: postgresql://certmon:certmon@certmon-db:5432/certmon
+    ports:
+      - '8001:5000'
+    restart: "no"
+    volumes:
+      - ./src/:/certmon
+    networks:
+      - certmon
+
+  certmon-db:
+    container_name: certmon-db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: certmon
+      POSTGRES_PASSWORD: certmon
+      PGDATA: /data/postgres
+      POSTGRES_DB: certmon
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - certmon
+
+  pgadmin:
+    container_name: certmon-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: certmon
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - certmon
+
+networks:
+  certmon:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
