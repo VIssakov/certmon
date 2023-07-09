@@ -1,6 +1,11 @@
 from flask import Flask, render_template, flash
 from forms import UrlForm, SaveCertForm
 from cert.extract import Extract
+from sqlalchemy import select
+from sqlmodel import Session
+
+from db import init_db, get_session
+from models.certs import Certs, CertsCreate
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a very hard to guess secret super key'

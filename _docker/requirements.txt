@@ -1,3 +1,5 @@
-Flask==2.2.2
-Flask-WTF==1.0.1
-pyOpenSSL==23.2.0
+Flask
+Flask-WTF
+pyOpenSSL
+psycopg2-binary
+sqlmodel
