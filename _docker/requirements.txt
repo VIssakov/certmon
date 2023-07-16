@@ -1,5 +1,6 @@
-Flask
+Flask==2.3.2
 Flask-WTF
+Flask-SQLAlchemy
 pyOpenSSL
 psycopg2-binary
 sqlmodel
