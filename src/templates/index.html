@@ -42,5 +42,23 @@
             {% endif %}
         {% endwith %}
     </div>
+    <br>
+    <h2> Certificates </h1>
+    <div class="content">
+        {% for certificate in certificates %}
+            <div class="certificate">
+                <p><b>#{{ certificate.id }}</b></p>
+                <b>
+                    <p class="subject">{{ certificate.name }}</p>
+                </b>
+                <p>Subject: {{ certificate.subject }}</p>
+                <p>Created: {{ certificate.not_before }}</p>
+                <p>Valid to: {{ certificate.not_after }}</p>
+                <p>Issuer: {{ certificate.issuer }}</p>
+                <p>Extensions: {{ certificate.extension_count }}</p>
+                <p>Alt names: {{ certificate.subject_altName }}</p>
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

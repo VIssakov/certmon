@@ -13,12 +13,13 @@ db = SQLAlchemy(app)
 
 class Certs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    subject = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    subject = db.Column(db.String(500), nullable=False)
     not_before = db.Column(db.String(100), nullable=False)
     not_after = db.Column(db.String(100), unique=True, nullable=False)
-    issuer = db.Column(db.String(100), nullable=False)
-    extension_count = db.Column(db.String(100), nullable=False)
-    subject_altName = db.Column(db.String(100), nullable=False)
+    issuer = db.Column(db.String(500), nullable=False)
+    extension_count = db.Column(db.String(1000), nullable=False)
+    subject_altName = db.Column(db.String(1000), nullable=False)
 
     def __repr__(self):
         return f'<Certificate {self.subject}>'

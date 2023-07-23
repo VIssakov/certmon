@@ -13,6 +13,58 @@ h1 {
 .form-success {
     background-color: #dfd4d4;
 }
+
 .form-error {
     background-color: #ff0000;
+}
+
+.title {
+    margin: 5px;
+}
+
+.content {
+    margin: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.certificate {
+    flex: 20%;
+    padding: 10px;
+    margin: 5px;
+    background-color: #f3f3f3;
+    inline-size: 100%;
+}
+
+.name {
+    color: #00a36f;
+    text-decoration: none;
+}
+
+nav a {
+    color: #d64161;
+    font-size: 3em;
+    margin-left: 50px;
+    text-decoration: none;
+}
+
+.pagination {
+    margin: 0 auto;
+}
+
+.pagination span {
+    font-size: 2em;
+    margin-right: 10px;
+}
+
+.page-number {
+    color: #d64161;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.current-page-number {
+    color: #666
 }
