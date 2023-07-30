@@ -20,6 +20,7 @@
         <div class="form-success" style="visibility:{{ visibility }}">
             <form method="POST" id="save_url_form">
                 {{ check_url_form.csrf_token }}
+                {{ save_url_form.name.label }}: {{ save_url_form.name(size=80, readonly="readonly", value=ssl['name'] ) }}<br>
                 {{ save_url_form.subject.label }}: {{ save_url_form.subject(size=80, readonly="readonly", value=ssl['subject'] ) }}<br>
                 {{ save_url_form.notbefore.label }}: {{ save_url_form.notbefore(size=80, readonly="readonly", value=ssl['notBefore']) }}<br>
                 {{ save_url_form.notafter.label }}: {{ save_url_form.notafter(size=80, readonly="readonly", value=ssl['notAfter']) }}<br>

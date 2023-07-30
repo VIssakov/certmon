@@ -1,4 +1,5 @@
 import os
+import sys
 from flask import Flask, render_template, flash
 from flask_sqlalchemy import SQLAlchemy
 from forms import UrlForm, SaveCertForm
@@ -13,12 +14,12 @@ db = SQLAlchemy(app)
 
 class Certs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
     subject = db.Column(db.String(500), nullable=False)
     not_before = db.Column(db.String(100), nullable=False)
-    not_after = db.Column(db.String(100), unique=True, nullable=False)
+    not_after = db.Column(db.String(100), nullable=False)
     issuer = db.Column(db.String(500), nullable=False)
-    extension_count = db.Column(db.String(1000), nullable=False)
+    extension_count = db.Column(db.String(1000), nullable=True)
     subject_altName = db.Column(db.String(1000), nullable=False)
 
     def __repr__(self):
@@ -27,6 +28,7 @@ class Certs(db.Model):
 
 @app.before_request
 def create_tables():
+    db.drop_all()
     db.create_all()
 
 
@@ -50,7 +52,16 @@ def index():
 
     if save_url_form.validate_on_submit():
         if save_url_form.save.data:
-            print(save_url_form.subject.data)
+            cert_data = Certs(
+                name=save_url_form.name.data,
+                subject=save_url_form.subject.data,
+                not_before=save_url_form.notbefore.data,
+                not_after=save_url_form.notafter.data,
+                issuer=save_url_form.issuer.data,
+                subject_altName=save_url_form.subjectaltname.data
+            )
+            db.session.add(cert_data)
+            db.session.commit()
             flash('success')
         if save_url_form.cancel.data:
             visibility = 'hidden'

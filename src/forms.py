@@ -14,6 +14,7 @@ class UrlForm(FlaskForm):
                 raise ValidationError('Url is not valid, please enter https://example.com')
 
 class SaveCertForm(FlaskForm):
+    name = StringField(label = 'name')
     subject = StringField(label = 'subject')
     notbefore = StringField(label = 'notBefore')
     notafter = StringField(label = 'notAfter')

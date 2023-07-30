@@ -32,7 +32,7 @@ class Extract:
             extension = server_certificate.get_extension(extension_id)
             if 'subjectAltName' in str(extension.get_short_name()):
                 altnames = extension.__str__()
-
+        result['name'] = url.replace("https://","")
         result['subject'] = str(server_certificate.get_subject()).replace("<X509Name object '", "").replace("'>", "")
         result['notBefore'] = server_certificate.get_notBefore().decode()
         result['notAfter'] = server_certificate.get_notAfter().decode()
