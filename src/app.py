@@ -28,7 +28,7 @@ class Certs(db.Model):
 
 @app.before_request
 def create_tables():
-    db.drop_all()
+    #db.drop_all()
     db.create_all()
 
 
@@ -63,6 +63,7 @@ def index():
             db.session.add(cert_data)
             db.session.commit()
             flash('success')
+            certificates = Certs.query.all()
         if save_url_form.cancel.data:
             visibility = 'hidden'
             flash('cancel')
