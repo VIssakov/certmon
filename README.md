@@ -19,7 +19,7 @@ Small test project to monitor SSL certificates
 - Add table with websites on monitoring [X]
 - Add save fuctions for certificate [X]
 - Update window with certs after save [X]
-- Check duplicates []
+- Check duplicates [X]
 - Add delete fuctions for certificate []
 - Add notice about experation via telegramm []
 - Add button for recreating CSR for certificate []

@@ -52,18 +52,22 @@ def index():
 
     if save_url_form.validate_on_submit():
         if save_url_form.save.data:
-            cert_data = Certs(
-                name=save_url_form.name.data,
-                subject=save_url_form.subject.data,
-                not_before=save_url_form.notbefore.data,
-                not_after=save_url_form.notafter.data,
-                issuer=save_url_form.issuer.data,
-                subject_altName=save_url_form.subjectaltname.data
-            )
-            db.session.add(cert_data)
-            db.session.commit()
-            flash('success')
-            certificates = Certs.query.all()
+            check_cert = Certs.query.filter_by(name=save_url_form.name.data).first()
+            if check_cert:
+                flash('Cert exist in DB')
+            else:
+                cert_data = Certs(
+                    name=save_url_form.name.data,
+                    subject=save_url_form.subject.data,
+                    not_before=save_url_form.notbefore.data,
+                    not_after=save_url_form.notafter.data,
+                    issuer=save_url_form.issuer.data,
+                    subject_altName=save_url_form.subjectaltname.data
+                )
+                db.session.add(cert_data)
+                db.session.commit()
+                flash('success')
+                certificates = Certs.query.all()
         if save_url_form.cancel.data:
             visibility = 'hidden'
             flash('cancel')
