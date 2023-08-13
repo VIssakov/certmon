@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from forms import UrlForm, SaveCertForm
 from cert.extract import Extract
@@ -73,3 +73,11 @@ def index():
             flash('cancel')
 
     return render_template('index.html', check_url_form=check_url_form, save_url_form=save_url_form,  url=url, ssl=ssl, visibility=visibility, certificates=certificates)
+
+
+@app.post('/<int:cert_id>/delete/')
+def delete(cert_id):
+    certificate = Certs.query.get_or_404(cert_id)
+    db.session.delete(certificate)
+    db.session.commit()
+    return redirect(url_for('index'))

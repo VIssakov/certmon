@@ -39,7 +39,7 @@ docker-compose up -d
 - Add save fuctions for certificate [X]
 - Update window with certs after save [X]
 - Check duplicates [X]
-- Add delete fuctions for certificate []
+- Add delete fuctions for certificate [X]
 - Add notice about experation via telegramm []
 - Add button for recreating CSR for certificate []
 - Add auth []
