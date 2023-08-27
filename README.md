@@ -40,6 +40,7 @@ docker-compose up -d
 - Update window with certs after save [X]
 - Check duplicates [X]
 - Add delete fuctions for certificate [X]
+- Fix cert info in to human readable [X]
 - Add notice about experation via telegramm []
 - Add button for recreating CSR for certificate []
 - Add auth []
