@@ -81,3 +81,8 @@ def delete(cert_id):
     db.session.delete(certificate)
     db.session.commit()
     return redirect(url_for('index'))
+
+
+@app.route('/configuration')
+def contact():
+    return render_template('configuration.html')

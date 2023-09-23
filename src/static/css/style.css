@@ -5,6 +5,33 @@ h1 {
     padding: 10px;
 }
 
+.navbar {
+    background-color: #0074D9; /* Blue color */
+    overflow: hidden;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
 .form_save_cancel_buttons {
     display:inline-block;
     margin-right:5px;

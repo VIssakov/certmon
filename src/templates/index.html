@@ -56,7 +56,6 @@
                 <p>Created: {{ certificate.not_before }}</p>
                 <p>Valid to: {{ certificate.not_after }}</p>
                 <p>Issuer: {{ certificate.issuer }}</p>
-                <p>Extensions: {{ certificate.extension_count }}</p>
                 <p>Alt names: {{ certificate.subject_altName }}</p>
                 <hr>
                 <form method="POST" action="{{ url_for('delete', cert_id=certificate.id) }}">
