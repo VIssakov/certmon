@@ -1,5 +1,4 @@
 import os
-import sys
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from forms import UrlForm, SaveCertForm
@@ -11,6 +10,22 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+class Config(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    parameter = db.Column(db.String(100), unique=True, nullable=False)
+    data = db.Column(db.String(500), nullable=False)
+
+    def __repr__(self):
+        return f'<Config {self.parameter}>'
+
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    chat_id = db.Column(db.String(500), nullable=True)
+
+    def __repr__(self):
+        return f'<User {self.name}>'
 
 class Certs(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,7 +39,6 @@ class Certs(db.Model):
 
     def __repr__(self):
         return f'<Certificate {self.subject}>'
-
 
 @app.before_request
 def create_tables():
