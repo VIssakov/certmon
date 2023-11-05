@@ -46,6 +46,7 @@ docker-compose up -d
 - page configuration: add ability to save info about client telegramm channels []
 - Add notice about experation date via telegramm []
 - Add button for recreating CSR for certificate []
+- Button to recheck cert []
 - Add auth []
 - Add groups and dashboard for groups []
 - Update files and functions structure []
