@@ -1,7 +1,8 @@
 import os
 from flask import Flask, render_template, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from forms import UrlForm, SaveCertForm
+from forms.url_form import UrlForm
+from forms.save_cert_form import SaveCertForm
 from cert.extract import Extract
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-from models import Config, Users, Certs
+from models.models import Config, Users, Certs
 
 @app.before_request
 def create_tables():
